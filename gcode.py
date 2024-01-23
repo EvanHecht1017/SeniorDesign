@@ -34,8 +34,10 @@ def parse_gcode_for_xyz(file_path):
                 # Check if any XYZ coordinate is present
                 if any(coord.values()):
                     coordinates.append((coord['X'], coord['Y'], coord['Z']))
-                
-    print(coordinates)
     return coordinates
     
-parse_gcode_for_xyz(file_path1)
+coordinates = parse_gcode_for_xyz(file_path1)
+total = len(coordinates)
+for i in range(1, total):
+    print(coordinates[i])
+
