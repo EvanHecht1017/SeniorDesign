@@ -501,16 +501,15 @@ class GerberWriter:
             self.write_gerber_trailer(f);
         
     # To do with excellon
-    
     def write_excellon_header(self,f):
-        print >> f, "%";
-        print >> f, "M48";
-        print >> f, "METRIC,TZ";
-        print >> f, "M71";
+        print("%", file = f)
+        print("M48", file=f)
+        print("METRIC,TZ", file=f)
+        print("M71", file=f)
         
     def define_excellon_drill_diameter(self,f,n,d):
         dia = self.default_diameter if d==0.0 else d;
-        print >> f, "T%02dC%4.3f" % (n,math.ceil(dia*10.0)/10.0);                    
+        print("T%02dC%4.3f" % (n,math.ceil(dia*10.0)/10.0), file=f)                   
         self.excellon_drill_diameters[d]=n;
         self.excellon_drill_codes[n]=d;
         
@@ -525,7 +524,7 @@ class GerberWriter:
     def write_excellon_select_drill(self,f,d):
         req_drill_code = self.excellon_drill_diameters[d];
         if self.current_excellon_drill_code!=req_drill_code:
-            print >> f, "T%02d" % req_drill_code;
+            print("T%02d" % req_drill_code, file=f)
             self.current_excellon_drill_code = req_drill_code;
             
     def write_excellon_cut(self,f,p):
@@ -536,10 +535,10 @@ class GerberWriter:
                 
     def write_excellon_drill_point(self,f,c):
         self.write_excellon_select_drill(f,c[DXFFile.DIAMETER]);
-        print >> f, GerberWriter.exc_emit_point((c[DXFFile.X],c[DXFFile.Y]));
+        print(GerberWriter.exc_emit_point((c[DXFFile.X],c[DXFFile.Y])), file=f)
                 
     def write_excellon_trailer(self,f):
-        print >> f, "M30";
+        print("M30", file=f)
     
     def write_excellon_file(self,fname,dxf,layernames):
         print('Writing Excellon file %s' % fname);
@@ -552,10 +551,9 @@ class GerberWriter:
 
             self.write_excellon_header(f);
             self.write_excellon_drills(f);
-            
-            print >> f, "%";
-            print >> f, "G05";
-                            
+            print("%", file=f)
+            print("G05", file=f)
+
             for dia in diameters:
                 print("Diameter = %g" % (dia));
                 
@@ -636,8 +634,8 @@ class GerberWriter:
 # The main program
                           
 if __name__=="__main__":
-
-    for f in glob.glob('G:\\resonator_board\\*.dxf'):
+    # Make this system arg
+    for f in glob.glob('/Users/evanhecht/Desktop/*.dxf'):
         
         print('Processing file %s' % f);
              
