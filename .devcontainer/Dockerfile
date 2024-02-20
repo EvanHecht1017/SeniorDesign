@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM clinstid/i386-python
 
 # Set the working directory
 WORKDIR /workspace
