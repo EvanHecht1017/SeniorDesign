@@ -41,7 +41,3 @@ total = len(coordinates)
 for i in range(1, total):
     print(coordinates[i])
 
-
-
-## To do:
-    # Convert DXF to Gerber , use pygerber 
