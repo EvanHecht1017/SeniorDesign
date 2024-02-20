@@ -21,9 +21,9 @@ E-mail: chen2qo@ucmail.uc.mail
 """
 import ctypes # Use to transfer syntax from C++ to Python.
 import time # Use to delay closing time.
-
+import math 
 # Call the DLL file from the laptop
-hllDll = ctypes.WinDLL ("C:\\Users\\yeongin\\Documents\\FMC4030\\FMC4030\\FMC4030-Dll.dll")
+hllDll = ctypes.WinDLL ("C:\\FMC4030\\FMC4030-Dll.dll")
 
 """
 ====================================
@@ -358,7 +358,8 @@ while 1 :
 
                     sec = 0
                     sec = Distance_X_Axis_Machine.value / Move_Speed.value # Calculate the waiting time.
-                    time.sleep(sec) # Reduce the burden of software running multiple times
+                    
+                    #time.sleep(sec1) # Reduce the burden of software running multiple times
 
                     """
                     Why this section is the multi-line comment, you can look up the Line. 225 - 233.
@@ -424,7 +425,7 @@ while 1 :
 
                     sec = 0
                     sec = Distance_Y_Axis_Machine.value / Move_Speed.value # Calculate the waiting time.
-                    time.sleep(sec) # Reduce the burden of software running multiple times
+                    #time.sleep(sec) # Reduce the burden of software running multiple times
 
                     """
                     Why this section is the multi-line comment, you can look up the Line. 225 - 233.
@@ -491,7 +492,7 @@ while 1 :
 
                     sec = 0
                     sec = Distance_Z_Axis_Machine.value / Move_Speed.value # Calculate the waiting time.
-                    time.sleep(sec) # Reduce the burden of software running multiple times
+                    #time.sleep(sec) # Reduce the burden of software running multiple times
 
                     """
                     Why this section is the multi-line comment, you can look up the Line. 225 - 233.
