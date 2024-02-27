@@ -14,3 +14,5 @@ The printer scales inputs by 1/10. So we have to add "Distance_X_Axis_Machine = 
 The current gcode path is hardcoded in the python script. To use your own gcode, replace the file path with your desired path.
 
 Once you have that complete, you can run `python3 gcode.py` in your terminal.
+
+Pip install keyboard to run the kayboard_movement.py file
