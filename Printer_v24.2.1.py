@@ -1,7 +1,7 @@
 import ctypes
 import time
 
-hllDll = ctypes.WinDLL ("C:\\Users\\yeongin\\Documents\\FMC4030\\FMC4030\\FMC4030-Dll.dll")
+hllDll = ctypes.WinDLL ("C:\\FMC4030\\FMC4030-Dll.dll")
 
 def Open_Device (Username, ip, port):
 
@@ -286,7 +286,7 @@ while True :
                         )
 
                     Distance_X_Axis = float(input("Unit: mm -> "))
-                    Distance_X_Axis_Machine = ctypes.c_float(Distance_X_Axis * 10)
+                    Distance_X_Axis_Machine = ctypes.c_float(Distance_X_Axis )
                     Response_Moving_Single_X_Axis = Move_Single_Axis(Username, X_Axis, Distance_X_Axis_Machine, Move_Speed, Move_Acc, Move_Dec, Move_Mode)
                     print(f"The device response: {Response_Moving_Single_X_Axis}.", flush = True)
                     print("\n""The x-axis is moving...", flush = True)
@@ -340,7 +340,7 @@ while True :
                         )
 
                     Distance_Y_Axis = float(input("Unit: mm -> "))
-                    Distance_Y_Axis_Machine = ctypes.c_float(Distance_Y_Axis * 10)
+                    Distance_Y_Axis_Machine = ctypes.c_float(Distance_Y_Axis )
                     Response_Moving_Single_Y_Axis = Move_Single_Axis(Username, Y_Axis, Distance_Y_Axis_Machine, Move_Speed, Move_Acc, Move_Dec, Move_Mode)
                     print(f"The device response: {Response_Moving_Single_Y_Axis}.", flush = True)
                     print("\n""The y-axis is moving...", flush = True)
@@ -394,7 +394,7 @@ while True :
                         )
 
                     Distance_Z_Axis = float(input("Unit: mm -> "))
-                    Distance_Z_Axis_Machine = ctypes.c_float(Distance_Z_Axis * 10)
+                    Distance_Z_Axis_Machine = ctypes.c_float(Distance_Z_Axis )
                     Response_Moving_Single_Z_Axis = Move_Single_Axis(Username, Z_Axis, Distance_Z_Axis_Machine, Move_Speed, Move_Acc, Move_Dec, Move_Mode)
                     print(f"The device response: {Response_Moving_Single_Z_Axis}.", flush = True)
                     print("\n""The z-axis is moving...", flush = True)
