@@ -1,6 +1,6 @@
 # Adjust the parsing function to correctly extract XYZ coordinates from the identified G-code commands
 
-file_path1 = "/Users/evanhecht/Downloads/dog-2.5H.gcode"
+file_path1 = "test_files/dog-2.5H.gcode"
 
 def parse_gcode_for_xyz(file_path):
     """
