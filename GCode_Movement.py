@@ -189,9 +189,9 @@ def interpret_gcode(file_path):
                 params = {component[0]: float(component[1:]) for component in components[1:] if component[0] in {'X', 'Y', 'Z'}}
                 
                 # Default to the current position if a coordinate is not provided in the G-code
-                x = params.get('X', 0)  # Replace 0 with current X if tracking
-                y = params.get('Y', 0)  # Replace 0 with current Y if tracking
-                z = params.get('Z', 0)  # Replace 0 with current Z if tracking
+                x = params.get('X', current_position['X']) 
+                y = params.get('Y', current_position['Y'])  
+                z = params.get('Z', current_position['Z'])  
 
                 if command == 'G0':
                     move_to(x, y, z)
