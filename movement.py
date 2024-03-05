@@ -136,7 +136,7 @@ Move_Dec = ctypes.c_float(50.0)
 Move_Mode = ctypes.c_int(1)     #1: Relative motion.    2: Absolute motion.
 Stop_Mode = 2                   #1: Decelerate.         2: Stop immediately.
 Move_Distance = 20
-
+current_position = {'X': 0, 'Y': 0, 'Z': 0}
 # Open Device
 Device_Response_Open_Device = hllApi_Open_Device(Username, ip_addr_c, Port)
 if Device_Response_Open_Device != 0:
@@ -160,10 +160,22 @@ def move_z_axis(distance):
 
 # Define a function to move the machine head to a specified location at cutting speed
 def move_to(x, y, z):
-    # Replace this print statement with the actual movement command of your program
-    move_x_axis(x)
-    move_y_axis(y)
-    move_z_axis(x)
+
+    global current_position
+
+    # Calculate the required movement for each axis
+    movement_x = x - current_position['X']
+    movement_y = y - current_position['Y']
+    movement_z = z - current_position['Z']
+
+    current_position['X'] += movement_x
+    current_position['Y'] += movement_y
+    current_position['Z'] += movement_z
+
+
+    move_x_axis(movement_x)
+    move_y_axis(movement_y)
+    move_z_axis(movement_z)
     print(f"Moving to X={x}, Y={y}, Z={z} ")
 
 def interpret_gcode(file_path):
@@ -185,5 +197,6 @@ def interpret_gcode(file_path):
                     move_to(x, y, z)
                 elif command == 'G1':
                     move_to(x, y, z)
-# Example usage
-interpret_gcode("path/to/your/gcode_file.gcode")
+# Run with Test File
+                    
+interpret_gcode("test_files/dog-2.5H.gcode")
