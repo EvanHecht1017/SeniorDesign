@@ -1,6 +1,6 @@
 import ctypes
 import time
-
+import sys
 # Call the DLL file from the laptop
 hllDll = ctypes.WinDLL("C:\\FMC4030\\FMC4030-Dll.dll")
 
@@ -199,4 +199,11 @@ def interpret_gcode(file_path):
                     move_to(x, y, z)
 # Run with Test File
                     
-interpret_gcode("test_files/dog-2.5H.gcode")
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python3 gcode.py <path_to_gcode_file>")
+        sys.exit(1)
+
+    gcode_file_path = sys.argv[1]
+    interpret_gcode(gcode_file_path)                   
+
