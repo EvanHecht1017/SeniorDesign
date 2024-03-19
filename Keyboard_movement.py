@@ -116,7 +116,7 @@ hllApi_Open_Device = hllApiProto_Open_Device (("FMC4030_Open_Device", hllDll),)
 hllApi_Check_Axis_Is_Stop = hllApiProto_Check_Axis_Is_Stop (("FMC4030_Check_Axis_Is_Stop", hllDll),)
 hllApi_Home_Single_Axis = hllApiProto_Home_Single_Axis (("FMC4030_Home_Single_Axis", hllDll),) # We didn't use it. Using Move_Single_Axis to control go back home.
 hllApi_Move_Single_Axis = hllApiProto_Move_Single_Axis (("FMC4030_Jog_Single_Axis", hllDll),)
-hllApi_Stop_Single_Axis = hllApiProto_Stop_Single_Axis (("FMC4030_Stop_Single_Axis", hllDll),)
+hllApi_Stop_Single_Axis = hllApiProto_Stop_Single_Axis (("FMC4030_Stop_Single_Axis", hllDlsssssssssssddddddl),)
 hllApi_Stop_Run = hllApiProto_Stop_Run (("FMC4030_Stop_Run", hllDll),) # We didn't use.
 hllApi_Get_Axis_Current_Position = hllApiProto_Get_Axis_Current_Position (("FMC4030_Get_Axis_Current_Pos", hllDll),) # We didn't use it.
 hllApi_Get_Axis_Current_Speed = hllApiProto_Get_Axis_Current_Speed (("FMC4030_Get_Axis_Current_Speed", hllDll),) # We didn't use it.
@@ -131,12 +131,12 @@ Port = 8088
 X_Axis = 0
 Y_Axis = 1
 Z_Axis = 2
-Move_Speed = ctypes.c_float(100.0)
-Move_Acc = ctypes.c_float(100.0)
-Move_Dec = ctypes.c_float(50.0)
+Move_Speed = ctypes.c_float(1000.0)
+Move_Acc = ctypes.c_float(1000.0)
+Move_Dec = ctypes.c_float(500.0)
 Move_Mode = ctypes.c_int(1)     #1: Relative motion.    2: Absolute motion.
 Stop_Mode = 2                   #1: Decelerate.         2: Stop immediately.
-Move_Distance = 20
+Move_Distance = 200
 
 # Open Device
 Device_Response_Open_Device = hllApi_Open_Device(Username, ip_addr_c, Port)

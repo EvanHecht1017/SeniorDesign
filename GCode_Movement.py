@@ -130,12 +130,12 @@ Port = 8088
 X_Axis = 0
 Y_Axis = 1
 Z_Axis = 2
-Move_Speed = ctypes.c_float(100.0)
-Move_Acc = ctypes.c_float(100.0)
-Move_Dec = ctypes.c_float(50.0)
+Move_Speed = ctypes.c_float(1000.0)
+Move_Acc = ctypes.c_float(1000.0)
+Move_Dec = ctypes.c_float(500.0)
 Move_Mode = ctypes.c_int(1)     #1: Relative motion.    2: Absolute motion.
 Stop_Mode = 2                   #1: Decelerate.         2: Stop immediately.
-Move_Distance = 20
+Move_Distance = 200
 current_position = {'X': 0, 'Y': 0, 'Z': 0}
 # Open Device
 Device_Response_Open_Device = hllApi_Open_Device(Username, ip_addr_c, Port)
@@ -200,10 +200,11 @@ def interpret_gcode(file_path):
 # Run with Test File
                     
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python3 gcode.py <path_to_gcode_file>")
-        sys.exit(1)
+    #if len(sys.argv) < 2:
+        #print("Usage: python3 gcode.py <path_to_gcode_file>")
+        #sys.exit(1)
 
-    gcode_file_path = sys.argv[1]
+    #gcode_file_path = sys.argv[1]
+    gcode_file_path = "test_files/test.gcode"
     interpret_gcode(gcode_file_path)                   
 
