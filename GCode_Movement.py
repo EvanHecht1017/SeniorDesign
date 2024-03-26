@@ -130,9 +130,7 @@ Port = 8088
 X_Axis = 0
 Y_Axis = 1
 Z_Axis = 2
-Move_Speed = ctypes.c_float(1000.0)
-Move_Acc = ctypes.c_float(1000.0)
-Move_Dec = ctypes.c_float(500.0)
+
 Move_Mode = ctypes.c_int(1)     #1: Relative motion.    2: Absolute motion.
 Stop_Mode = 2                   #1: Decelerate.         2: Stop immediately.
 Move_Distance = 200
@@ -159,8 +157,10 @@ def move_z_axis(distance):
     print("Moving Z Axis")
 
 # Define a function to move the machine head to a specified location at cutting speed
-def move_to(x, y, z):
-
+def quick_move_to(x, y, z):
+    Move_Speed = ctypes.c_float(1000.0)
+    Move_Acc = ctypes.c_float(1000.0)
+    Move_Dec = ctypes.c_float(500.0)
     global current_position
 
     # Calculate the required movement for each axis
@@ -177,7 +177,27 @@ def move_to(x, y, z):
     move_y_axis(movement_y)
     move_z_axis(movement_z)
     print(f"Moving to X={x}, Y={y}, Z={z} ")
+def move_to(x, y, z):
 
+    Move_Speed = ctypes.c_float(500.0)
+    Move_Acc = ctypes.c_float(500.0)
+    Move_Dec = ctypes.c_float(250.0)
+    global current_position
+
+    # Calculate the required movement for each axis
+    movement_x = x - current_position['X']
+    movement_y = y - current_position['Y']
+    movement_z = z - current_position['Z']
+
+    current_position['X'] += movement_x
+    current_position['Y'] += movement_y
+    current_position['Z'] += movement_z
+
+
+    move_x_axis(movement_x)
+    move_y_axis(movement_y)
+    move_z_axis(movement_z)
+    print(f"Moving to X={x}, Y={y}, Z={z} ")
 def interpret_gcode(file_path):
     with open(file_path, 'r') as file:
         for line in file:
@@ -196,7 +216,7 @@ def interpret_gcode(file_path):
                 if command == 'G0':
                     move_to(x, y, z)
                 elif command == 'G1':
-                    move_to(x, y, z)
+                    quick_move_to(x, y, z)
 # Run with Test File
                     
 if __name__ == "__main__":
